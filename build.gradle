@@ -16,11 +16,13 @@ repositories {
         name = "sonatype"
         url = "https://oss.sonatype.org/content/groups/public/"
     }
+    maven { url = "https://repo.codemc.io/repository/maven-public/" }
 }
 
 dependencies {
     compileOnly("org.spigotmc:spigot-api:1.20.1-R0.1-SNAPSHOT")
     compileOnly fileTree("libs")
+    compileOnly("fr.xephi:authme:5.6.0")
 }
 
 tasks {
