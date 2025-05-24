@@ -8,4 +8,4 @@ register-prompt: "&b📢 &f请输入您的&cQQ号码 &f或 输入&c/register <�
 title-code: "验证码 {0}"
 subtitle-code: "请在群内 @机器人 <验证码> 完成发送"
 login-mssage: "请在群内发送 @机器人 登录 或 输入/login <密码> 完成登录"
-login-success: "玩家%player_name%已成功登录服务器，祝您游戏愉快！"
+login-success: "您已成功登录服务器，祝您游戏愉快！"

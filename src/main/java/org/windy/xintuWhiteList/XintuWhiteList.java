@@ -75,7 +75,7 @@ public class XintuWhiteList extends JavaPlugin implements Listener {
 
                 // 动态读取当前插件的配置参数
                 String registerPrompt = this.getConfig().getString("register-prompt", "&a请注册账号");
-                String loginPrompt = this.getConfig().getString("login-prompt", "&c请登录账号");
+                String loginPrompt = this.getConfig().getString("login-mssage", "&c请登录账号");
 
                 // 修改配置项（支持多级路径）
                 config.set("registration.register_request", registerPrompt);
