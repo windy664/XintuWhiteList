@@ -110,7 +110,7 @@ public class XintuWhiteList extends JavaPlugin implements Listener {
         }
     }
 
-    private void saveWhiteList() {
+    public void saveWhiteList() {
         try (Writer writer = new FileWriter(whiteListFile)) {
             gson.toJson(whiteListEntries, writer);
         } catch (IOException e) {
@@ -257,7 +257,7 @@ public class XintuWhiteList extends JavaPlugin implements Listener {
     public static class WhiteListEntry {
         int index; // 序号
         String timestamp; // 时间戳
-        String formId;
+        public String formId;
         public String player;
         String code;
         public String qq;
