@@ -1,0 +1,45 @@
+name: Spigot Plugin CI
+
+on:
+  # 仅当推送到main分支或创建PR到main时触发
+  push:
+    branches:
+      - "*"
+  pull_request:
+    branches:
+      - "*"
+
+jobs:
+  build-plugin:
+    runs-on: ubuntu-latest
+    outputs:
+      jar-path: ${{ steps.build.outputs.jar-path }}
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup JDK 8
+        uses: actions/setup-java@v3
+        with:
+          java-version: '8'
+          distribution: 'temurin'
+          cache: 'gradle'
+
+      - name: Grant permissions
+        run: chmod +x gradlew
+
+      - name: Build and package
+        id: build
+        run: ./gradlew build
+        env:
+          GRADLE_USER_HOME: ~/.gradle
+
+      - name: Upload JAR artifact
+        uses: actions/upload-artifact@v4
+        with:
+          path: build/libs/*.jar
+          retention-days: 7
+
+      - name: Show build info
+        run: echo "Built JAR path is ${{ steps.build.outputs.jar-path }}"
