@@ -25,16 +25,17 @@ public class XintuWhiteList extends JavaPlugin implements Listener {
 
     private File whiteListFile;
     private final Gson gson = new Gson();
-    private final List<WhiteListEntry> whiteListEntries = new ArrayList<>();
+    public final List<WhiteListEntry> whiteListEntries = new ArrayList<>();
 
     private final Map<String, String> pendingQQ = new HashMap<>();   // playerName -> QQ
     private final Map<String, String> pendingCode = new HashMap<>(); // playerName -> code
 
     private static final Pattern QQ_PATTERN = Pattern.compile("^[1-9][0-9]{4,14}$");
     private static final Pattern CODE_PATTERN = Pattern.compile("^\\d{4}$");
-
+    private static XintuWhiteList instance;
     @Override
     public void onEnable() {
+        instance = this;
         getServer().getPluginManager().registerEvents(this, this);
         whiteListFile = new File(getDataFolder(), "whitelist.json");
         if (!whiteListFile.exists()) {
@@ -253,13 +254,13 @@ public class XintuWhiteList extends JavaPlugin implements Listener {
         });
     }
 
-    private static class WhiteListEntry {
+    public static class WhiteListEntry {
         int index; // 序号
         String timestamp; // 时间戳
         String formId;
-        String player;
+        public String player;
         String code;
-        String qq;
+        public String qq;
 
         public WhiteListEntry(int index, String formId, String player, String code, String qq) {
             this.index = index;
@@ -308,7 +309,13 @@ public class XintuWhiteList extends JavaPlugin implements Listener {
             return false;
         }
     }
+    public static XintuWhiteList getInstance() {
+        return instance;
+    }
 
+    public List<WhiteListEntry> getWhiteListEntries() {
+        return whiteListEntries;
+    }
 
 }
 
