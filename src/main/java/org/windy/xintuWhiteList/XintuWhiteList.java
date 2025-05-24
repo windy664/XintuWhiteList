@@ -154,7 +154,7 @@ public class XintuWhiteList extends JavaPlugin implements Listener {
             player.sendMessage("§a您的验证码为: §e" + code + "，请发送至QQ群完成验证。");
             String titlePattern = this.getConfig().getString("title-code");
             String title = MessageFormat.format(titlePattern, code);
-            player.sendTitle(title, this.getConfig().getString("subtitle-code"), 10, 70, 20);
+            player.sendTitle(title, this.getConfig().getString("subtitle-code"), 10, 200, 20);
             // 异步下载 QQ 头像
             Bukkit.getScheduler().runTaskAsynchronously(this, () -> {
                 try {
